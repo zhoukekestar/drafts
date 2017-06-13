@@ -4,14 +4,14 @@ module.exports = {
   entry: './src/entry-2.js',
   output: {
     path: `${__dirname}/dist`,
-    filename: 'bundle-2.js'
+    filename: 'bundle-2-2.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        use: ['style-loader', 'css-loader']
       }
-    ]
-  }
+    ],
+  },
 }

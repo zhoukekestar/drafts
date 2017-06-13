@@ -8,9 +8,28 @@
 Default: ["*-webpack-loader", "*-web-loader", "*-loader", "*"]
 
 # 编译方式
-* entry-1.js
-  * `webpack ./src/entry-1.js ./dist/bundle-1.js`
-* entry-2.js
-  * 直接运行`webpack --config webpack.custom.config.js`。
-    注意！如果名字为`webpack.config.js`的话，可以直接运行`webpack`，不用加任何参数。此处如果是默认名字的话，第二条命令会运行出错，故修改了config文件的名字。
-  * 运行`webpack ./src/entry-2.js ./dist/bundle-2-2.js --module-bind "css=style-loader!css-loader"`
+* `entry-1.js`: require中添加`loaders`
+  * `./node_modules/.bin/webpack ./src/entry-1.js ./dist/bundle-1.js`
+* `entry-2.js`
+  * 运行`./node_modules/.bin/webpack ./src/entry-2.js ./dist/bundle-2.js --module-bind "css=style-loader!css-loader"`
+
+    绑定文件`loaders`
+
+  * 运行`./node_modules/.bin/webpack --config webpack-2-2.config.js`。
+
+    注意！如果名字为`webpack.config.js`的话，第一条命令会运行出错，故修改了config文件的名字。
+
+  * 运行`./node_modules/.bin/webpack --config webpack-2-3.config.js`。
+
+    绑定插件
+
+  * 运行`./node_modules/.bin/webpack --config webpack-2-4.config.js`。
+
+    分离CSS模块, 在dist下得到 `bundle-2-4.js` 和 `bundle-2-4.css`
+
+* `entry-3.js`
+  * `webpack --config webpack-3.config.js`
+
+    分离依赖模块和逻辑模块，主要原因是依赖模块不经常变，而逻辑模块会经常变，其中`.vendor.js`为依赖模块代码，需要先加载，`.main.js`为逻辑代码，需要在依赖模块加载完后加载
+* `entry-4.js`
+  * `webpack --config webpack-4.config.js`
