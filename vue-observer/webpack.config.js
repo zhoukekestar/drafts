@@ -1,7 +1,8 @@
 const webpack = require('webpack');
+const path = require('path');
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: './src/index.js',
   output: {
     filename: 'vue-observer.js',
     path: `${__dirname}/dist`
@@ -19,11 +20,17 @@ module.exports = {
                 targets: {
                   chrome: 59
                 }
-              }]
-            ]
-          }
-        }
+              }],
+              'flow',
+            ],
+          },
+        },
       },
     ],
   },
-}
+  resolve: {
+    alias: {
+      shared: path.resolve(__dirname, 'src/shared/'),
+    },
+  },
+};
