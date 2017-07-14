@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>demo</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline'; script-src 'sha256-1tD3lYbOBFeMLrXs+T9Tv9xEgcMsVs032rlMyrYSa0c=' 'nonce-helloNonce'">
+    <style>
+      textarea {
+        display: block;
+        width: 100%;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea>
+<meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline'; script-src 'sha256-1tD3lYbOBFeMLrXs+T9Tv9xEgcMsVs032rlMyrYSa0c=' 'nonce-helloNonce'">
+<script>alert('hello geemo')</script> <!-- 不执行 -->
+<script>alert("hello world");</script> <!-- 执行 -->
+<script nonce='noHelloNonce'>alert("hello no-nonce");</script> <!-- 不执行 -->
+<script nonce='helloNonce'>alert("hello nonce");</script> <!-- 执行 -->
+    </textarea>
+
+    <script>alert('hello geemo')</script> <!-- 不执行 -->
+    <script>alert("hello world");</script> <!-- 执行 -->
+    <script nonce='noHelloNonce'>alert("hello no-nonce");</script> <!-- 不执行 -->
+    <script nonce='helloNonce'>alert("hello nonce");</script> <!-- 执行 -->
+  </body>
+</html>
