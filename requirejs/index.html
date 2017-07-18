@@ -3,13 +3,92 @@
   <head>
     <meta charset="utf-8">
     <title>index</title>
+    <style media="screen">
+      textarea {
+        display: block;
+        width: 500px;
+        height: 200px;
+      }
+      .code {
+        display: inline-block;
+        width: 500px;
+        margin: 20px;
+      }
+      #output {
+        padding: 20px;
+      }
+    </style>
   </head>
   <body>
+    <div class='code'>
+      <h3>index.js</h3>
+      <textarea>
+require.config({
+  baseUrl: './libs',
+  paths: {
+    'a': 'a',
+    'b': 'b/b',
+    'cmd': 'cmd'
+  },
+})
+
+require(['a', 'cmd'], function (a, cmd) {
+  a.test();
+})
+      </textarea>
+    </div>
+    <div class='code'>
+      <h3>a.js</h3>
+      <textarea>
+define(['b', 'exports'], function (b, exports) {
+  console.log('a.js init.');
+  b();
+
+  exports.test = function () {
+    console.log('a.js return.')
+  }
+})
+      </textarea>
+    </div>
+    <div class='code'>
+      <h3>b.js</h3>
+      <textarea>
+define(function () {
+  console.log('b.js init.');
+  return function() {
+    console.log('b.js return.');
+  }
+})
+      </textarea>
+    </div>
+    <div class='code'>
+      <h3>cmd.js</h3>
+      <textarea>
+define(function(require, exports, module) {
+  var a = require('a');
+  console.log('----cmd----');
+  a.test();
+  console.log('----/cmd----');
+})
+      </textarea>
+    </div>
+
+    <div id='output'></div>
+    <script>
+      var output = document.querySelector('#output');
+      console._log = console.log;
+      console.log = function (msg) {
+        console._log(msg);
+        var p = document.createElement('p');
+        p.innerHTML = msg;
+        output.appendChild(p);
+      }
+    </script>
     <!-- <script src='./libs/require.js'></script> -->
     <script src='kitty.js'></script>
     <script>
       require.config({
-        baseUrl: './libs',
+        baseUrl: '/drafts/requirejs/libs',
         paths: {
           'a': 'a',
           'b': 'b/b',
