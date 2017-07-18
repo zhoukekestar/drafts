@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>index</title>
+  </head>
+  <body>
+    <!-- <script src='./libs/require.js'></script> -->
+    <script src='kitty.js'></script>
+    <script>
+      require.config({
+        baseUrl: './libs',
+        paths: {
+          'a': 'a',
+          'b': 'b/b',
+          'cmd': 'cmd'
+        },
+      })
+
+      require(['a', 'cmd'], function (a, cmd) {
+        a.test();
+      })
+    </script>
+  </body>
+</html>
