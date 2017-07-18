@@ -63,12 +63,12 @@
   var cachedMod = {};
 
   var STATUS = {
-    UNFETCH: 0, // 未加载
-    FETCHING: 1, // 正在请求资源
-    FETCHED: 2, // 资源请求完成
-    LOADING: 3,
-    LOADED: 4,
-    EXECUTED: 5 // 已执行完毕
+    UNFETCH: 0,   // 未加载
+    FETCHING: 1,  // 正在请求模块资源
+    FETCHED: 2,   // 模块资源请求完成
+    LOADING: 3,   // 正在请求资源的依赖模块
+    LOADED: 4,    // 模块和模块的依赖都已加载完成
+    EXECUTED: 5   // 已执行完毕
   };
 
   var blank = function() {};
@@ -178,7 +178,11 @@
     mod.factory = blank;
     mod.exports = {};
 
+    // 资源未加载
     mod.state = STATUS.UNFETCH;
+
+    // 当有模块依赖当前模块的，在 listeners 中添加回调监听
+    // 以便在当前模块加载完成时，通知父模块
     mod.listeners = [];
 
     mod.require = requireFactory(mod.id);
@@ -248,21 +252,31 @@
   Module.prototype.load = function(callback) {
     var mod = this;
 
+    // 资源正在加载
+    // 当资源加载完成后，会再次调用当前 load 函数
     if (mod.state === STATUS.FETCHING) {
       return;
     }
+
+    // 资源未加载的，加载资源
     if (mod.state <= STATUS.UNFETCH) {
+      // 当资源加载完成后，会再次调用当前 load 函数
       mod.fetch();
       return;
     }
+
+    // 资源加载完成，并调用 load 函数，状态为 LOADING
     mod.state = STATUS.LOADING;
 
     var deps = mod.deps || [];
 
     mod.remain = deps.length;
 
+    // 当前模块的依赖加载完成时，会调用该函数
     function callback() {
+      // 依赖模块加载完成后，仍需要加载的模块数量减 1
       mod.remain--;
+      // 子依赖模块都加载完成后，就能执行 onload 函数
       if (mod.remain === 0) {
         mod.onload();
       }
@@ -281,24 +295,35 @@
 
       } else {
         var absId = resolveId(dep, mod.id);
+
+        // 依赖模块
         var m = getModule(absId);
         if (m.state >= STATUS.LOADED || (m.state === STATUS.LOADING && !mod.isForce)) {
           //  equal situation is for circle dependency
           mod.remain--;
           return;
         }
+
+        // 依赖模块中的回调，添加当前模块的监听函数
+        // 以便在依赖模块加载完成时，当前的模块能执行
         m.listeners.push(callback);
+
         if (m.state < STATUS.LOADING) {
           m.load();
         }
       }
     });
 
+    // 所有依赖都加载完
     if (mod.remain === 0) {
       mod.onload();
     }
   };
 
+  /**
+   * 当模块自身和模块依赖的子模块都加载完成时，执行此函数
+   *   通知当前模块的监听数组，说明当前模块加载完成了
+   */
   Module.prototype.onload = function() {
     var mod = this;
     if (mod.state >= STATUS.LOADED) {
@@ -306,6 +331,8 @@
     }
     mod.state = STATUS.LOADED;
 
+    // 通知当前模块的监听数组
+    // 如果有父模块依赖当前模块，就会通知到父模块
     var listeners = mod.listeners;
     each(listeners, function(listener) {
       listener();
@@ -314,14 +341,19 @@
     mod.callback && mod.callback();
   };
 
+  /**
+   * 执行模块代码
+   */
   Module.prototype.exec = function() {
     var mod = this;
     if (mod.state >= STATUS.EXECUTED) {
       return mod.exports;
     }
 
+    // 获取模块依赖的输出
     var args = mod.getDepsExport();
     if (isType(mod.factory, 'Function')) {
+      // 执行 factory，并将回调结果设置到 exports 中
       var ret = mod.factory.apply(null, args);
       mod.exports = ret || mod.exports;
     } else {
@@ -332,7 +364,12 @@
   };
 
 
-
+  /**
+   * 获取模块资源
+   *   设置状态为 FETCHING
+   *   加载 script
+   *   加载完 script 后，设置状态为 FETCHED，执行 load 函数
+   */
   Module.prototype.fetch = function() {
     var mod = this;
     mod.state = STATUS.FETCHING;
@@ -350,15 +387,18 @@
       }
     }
 
+    // 创建 Script 元素
     var uri = mod.uri;
     var script = document.createElement('script');
 
+    // 添加监听事件
     if (script.readyState) {
       script.onreadystatechange = onloadListener;
     } else {
       script.onload = onloadListener;
     }
 
+    // 设置 script 属性并加载
     script.src = uri + '.js';
     script.setAttribute('data-module-id', mod.id);
     script.async = true;
@@ -373,6 +413,10 @@
     headElement = baseElement.parentNode;
   }
 
+  /**
+   * 添加 Script 元素到 document，用于加载 script
+   * @param  {Element} script - script 元素
+   */
   function appendScript(script) {
     currentlyAddingScript = script;
 
@@ -386,6 +430,13 @@
     currentlyAddingScript = null;
   }
 
+  /**
+   * 为模块加载插件
+   * @param  {[type]}   module            [description]
+   * @param  {[type]}   pluginAndResource [description]
+   * @param  {Function} callback          [description]
+   * @return {[type]}                     [description]
+   */
   function loadPlugin(module, pluginAndResource, callback) {
     var parsedId = parseId(pluginAndResource);
     var pluginId = parsedId.pluginId;
@@ -490,7 +541,9 @@
 
   /**
    * require函数
-   * @type {[type]}
+   * @param {Array} deps - 模块依赖数组
+   * @param {Function} callback - 回调函数
+   * @param {Bool} isForce - 设置为 Force 为 true 的话，无论依赖资源是否加载完成，都直接执行
    */
   var require = requireFactory(cid());
 
@@ -512,18 +565,27 @@
         var randomId = resolveId(cid(), base);
         var mod = new Module(randomId);
         mod.deps = deps;
+
+        // 用户的回调函数
         mod.factory = callback || blank;
+
+        // 模块的回调
+        //   加载子模块
+        //   执行模块代码
         mod.callback = function() {
           each(mod.deps, function(dep) {
-            if (dep.indexOf('!') === -1 &&
-              !isBuiltinModule(dep)) {
+            if (dep.indexOf('!') === -1 && !isBuiltinModule(dep)) {
               mod.require(dep);
             }
           });
           mod.exec();
         };
+
+        // 当前模块已经在执行了，所以，一开始就是资源已加载完成的状态
         mod.state = STATUS.FETCHED;
         mod.isForce = isForce;
+
+        // 执行模块
         mod.load();
       }
     };
