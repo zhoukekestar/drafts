@@ -485,8 +485,7 @@
    * define 函数
    * @param  {String} id - 模块ID
    * @param  {Array} deps - 模块依赖数组
-   * @param  {[type]} factory [description]
-   * @return {[type]}         [description]
+   * @param  {Function} factory - 用户代码
    */
   function define(id, deps, factory) {
     if (factory == null) {
