@@ -1,0 +1,37 @@
+<script src="./lib/jquery-1.4.2.min.js"></script>
+<script src="./lib/dynamicaudio-min.js"></script>
+<script src="./source/nes.js"></script>
+<script src="./source/utils.js"></script>
+<script src="./source/cpu.js"></script>
+<script src="./source/keyboard.js"></script>
+<script src="./source/mappers.js"></script>
+<script src="./source/papu.js"></script>
+<script src="./source/ppu.js"></script>
+<script src="./source/rom.js"></script>
+<script src="./source/ui.js"></script>
+<script>
+class CJSNES extends HTMLElement {
+  constructor() {
+    super();
+
+    var s = setInterval(() => {
+      if (JSNES && $) {
+
+        clearInterval(s);
+        this.load();
+      }
+    }, 100);
+  }
+
+  load() {
+    new JSNES({
+      'ui': $(this).JSNESUI({
+        "Games": [
+          ['Super Mario', this.getAttribute('url')],
+        ],
+      }),
+    });
+  }
+}
+customElements.define('js-nes', CJSNES);
+</script>
