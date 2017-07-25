@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>form-json test</title>
+    <link rel="stylesheet" href="https://unpkg.com/mocha@3.4.2/mocha.css">
+  </head>
+  <body>
+    <div id='mocha'></div>
+
+    <script src="./simple-co.js"></script>
+    <script src='https://unpkg.com/chai@4.1.0/chai.js'></script>
+    <script src='https://unpkg.com/mocha@3.4.2/mocha.js'></script>
+    <script>
+      // mocha.timeout = 5000;
+      mocha.setup({
+        ui: 'bdd',
+        ignoreLeaks: true,
+        useInlineDiffs: true
+      });
+      // mocha.checkLeaks();
+    </script>
+    <script src='./simple-test-web.js'></script>
+    <script>
+      mocha.run();
+    </script>
+  </body>
+</html>
