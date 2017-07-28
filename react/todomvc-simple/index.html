@@ -13,7 +13,7 @@
     <div id="root"></div>
     <script>
     window.actions = (() => {
-      let nextTodoId = 0;
+      let nextTodoId = 3;
 
       return {
         addTodo: text => {
@@ -78,14 +78,29 @@
           }
         }
 
-        window.store = Redux.createStore(Redux.combineReducers({todos, visibilityFilter}));
-
-        setTimeout(() => {
-          store.dispatch(actions.addTodo('11'));
-          store.dispatch(actions.addTodo('22'));
-          store.dispatch(actions.addTodo('33'));
-          store.dispatch(actions.toggleTodo(2));
-        }, 1000);
+        window.store = Redux.createStore(
+          Redux.combineReducers({todos, visibilityFilter}),
+          {
+            todos: [
+              {
+                id: 0,
+                text: '11',
+                completed: false
+              },
+              {
+                id: 1,
+                text: '22',
+                completed: true
+              },
+              {
+                id: 2,
+                text: '33',
+                completed: false
+              }
+            ],
+            visibilityFilter: 'SHOW_ALL'
+          }
+        );
 
       })();
 

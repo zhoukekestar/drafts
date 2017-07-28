@@ -9,10 +9,13 @@ class FilterLink extends React.Component {
     }
 
     store.subscribe(() => {
-      let state = store.getState();
-      this.setState((state, ownProps) => ({
-        active: ownProps.filter === state.visibilityFilter
-      }))
+      // let state = store.getState();
+      this.setState((state, ownProps) => {
+        // console.log(state, ownProps);
+        return {
+          active: ownProps.filter === store.getState().visibilityFilter
+        }
+      })
     })
   }
 

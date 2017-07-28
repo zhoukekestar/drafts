@@ -17,15 +17,15 @@ class TodoList extends React.Component {
     super();
 
     store.subscribe(() => {
-      console.log('..')
       let state = store.getState();
       this.setState({
         todos: getVisibleTodos(state.todos, state.visibilityFilter)
       })
     })
 
+    let state = store.getState();
     this.state = {
-      todos: []
+      todos: state.todos || []
     }
   }
   onTodoClick(id) {
