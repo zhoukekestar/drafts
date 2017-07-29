@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,6 +5,7 @@
     <title>Hello World</title>
     <script src="https://unpkg.com/react@latest/dist/react.js"></script>
     <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src='https://unpkg.com/prop-types@15.5.10/prop-types.js'></script>
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
   </head>
   <body>
@@ -14,14 +14,18 @@
 
       class HelloMessage extends React.Component {
         render() {
-          return <h1>Hello {this.props.name}!</h1>;
+          return <h1>Hello {this.props.names.join(' ')}!</h1>;
         }
       }
+
+      HelloMessage.propTypes = {
+        names: PropTypes.array.isRequired
+      }
+
       ReactDOM.render(
-        <HelloMessage name='world' />,
+        <HelloMessage names={['world', ' - propTypes']} />,
         document.getElementById('root')
       );
-
     </script>
   </body>
 </html>
