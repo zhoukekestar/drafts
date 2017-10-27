@@ -1,0 +1,151 @@
+{
+  "data": {
+    "feed": [
+      {
+        "__typename": "Entry",
+        "postedBy": {
+          "__typename": "User",
+          "login": "stubailo"
+        },
+        "repository": {
+          "__typename": "Repository",
+          "name": "apollo-client",
+          "owner": {
+            "__typename": "User",
+            "login": "apollographql"
+          },
+          "stargazers_count": 4370
+        }
+      },
+      {
+        "__typename": "Entry",
+        "postedBy": {
+          "__typename": "User",
+          "login": "Slava"
+        },
+        "repository": {
+          "__typename": "Repository",
+          "name": "react-native",
+          "owner": {
+            "__typename": "User",
+            "login": "facebook"
+          },
+          "stargazers_count": 54933
+        }
+      },
+      {
+        "__typename": "Entry",
+        "postedBy": {
+          "__typename": "User",
+          "login": "Slava"
+        },
+        "repository": {
+          "__typename": "Repository",
+          "name": "linux",
+          "owner": {
+            "__typename": "User",
+            "login": "torvalds"
+          },
+          "stargazers_count": 51074
+        }
+      },
+      {
+        "__typename": "Entry",
+        "postedBy": {
+          "__typename": "User",
+          "login": "Slava"
+        },
+        "repository": {
+          "__typename": "Repository",
+          "name": "electron",
+          "owner": {
+            "__typename": "User",
+            "login": "electron"
+          },
+          "stargazers_count": 51818
+        }
+      },
+      {
+        "__typename": "Entry",
+        "postedBy": {
+          "__typename": "User",
+          "login": "nahid"
+        },
+        "repository": {
+          "__typename": "Repository",
+          "name": "talk",
+          "owner": {
+            "__typename": "User",
+            "login": "nahid"
+          },
+          "stargazers_count": 779
+        }
+      },
+      {
+        "__typename": "Entry",
+        "postedBy": {
+          "__typename": "User",
+          "login": "helfer"
+        },
+        "repository": {
+          "__typename": "Repository",
+          "name": "apollo-server",
+          "owner": {
+            "__typename": "User",
+            "login": "apollographql"
+          },
+          "stargazers_count": 2343
+        }
+      },
+      {
+        "__typename": "Entry",
+        "postedBy": {
+          "__typename": "User",
+          "login": "Slava"
+        },
+        "repository": {
+          "__typename": "Repository",
+          "name": "bootstrap",
+          "owner": {
+            "__typename": "User",
+            "login": "twbs"
+          },
+          "stargazers_count": 116989
+        }
+      },
+      {
+        "__typename": "Entry",
+        "postedBy": {
+          "__typename": "User",
+          "login": "Slava"
+        },
+        "repository": {
+          "__typename": "Repository",
+          "name": "d3",
+          "owner": {
+            "__typename": "User",
+            "login": "d3"
+          },
+          "stargazers_count": 69341
+        }
+      },
+
+      {
+        "__typename": "Entry",
+        "postedBy": {
+          "__typename": "User",
+          "login": "Slava"
+        },
+        "repository": {
+          "__typename": "Repository",
+          "name": "javascript",
+          "owner": {
+            "__typename": "User",
+            "login": "airbnb"
+          },
+          "stargazers_count": 59905
+        }
+      }
+    ]
+  }
+}

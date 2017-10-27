@@ -37,7 +37,7 @@ const ChannelList = ({ data: { loading, error, channels}}) => {
   if (error) {
     return <p>{error.message}</p>;
   }
-  
+
   return <ul>
       {channels.map(c => <li key={c.id}>{c.name}</li>)}
     </ul>;
