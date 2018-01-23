@@ -23,16 +23,25 @@ let actions = store => ({
   }
 });
 
-const App = connect("count", actions)(({ count, increment }) => (
-  <div>
-    <p className='result'>Count: {count}</p>
-    <button className='button' onClick={increment}>Increment</button>
-  </div>
-));
+class App {
+  constructor(a, b) {
+    return <div>
+      <p>hello world</p>
+      </div>
+  }
+}
+
+// const App = connect("count", actions)(({ count, increment }) => (
+//   <div>
+//     <p className='result'>Count: {count}</p>
+//     <button className='button' onClick={increment}>Increment</button>
+//   </div>
+// ));
 
 render(
   <Provider store={store}>
-    <App />
+    {/* <App /> */}
+    { connect("count", actions)(App) }
   </Provider>,
   document.body
 );

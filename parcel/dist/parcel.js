@@ -65,7 +65,7 @@ require = (function (modules, cache, entry) {
 
   // Override the current require with this new one
   return newRequire;
-})({10:[function(require,module,exports) {
+})({8:[function(require,module,exports) {
 var bundleURL = null;
 function getBundleURLCached() {
   if (!bundleURL) {
@@ -96,7 +96,7 @@ function getBaseURL(url) {
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 
-},{}],9:[function(require,module,exports) {
+},{}],5:[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -128,13 +128,13 @@ function reloadCSS() {
 
 module.exports = reloadCSS;
 
-},{"./bundle-url":10}],6:[function(require,module,exports) {
+},{"./bundle-url":8}],4:[function(require,module,exports) {
 
         var reloadCSS = require('_css_loader');
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":9}],7:[function(require,module,exports) {
+},{"_css_loader":5}],6:[function(require,module,exports) {
 !function() {
     'use strict';
     function VNode() {}
@@ -543,7 +543,7 @@ module.exports = reloadCSS;
     if ('undefined' != typeof module) module.exports = preact; else self.preact = preact;
 }();
 //# sourceMappingURL=preact.js.map
-},{}],8:[function(require,module,exports) {
+},{}],7:[function(require,module,exports) {
 "use strict";
 
 function t(t) {
@@ -596,7 +596,7 @@ function t(t) {
   return t.children[0];
 }, exports.createStore = t, exports.connect = n, exports.Provider = r;
 //# sourceMappingURL=unistore.js.map
-},{"preact":7}],4:[function(require,module,exports) {
+},{"preact":6}],2:[function(require,module,exports) {
 "use strict";
 
 require("./index.css");
@@ -608,6 +608,8 @@ var _preact2 = _interopRequireDefault(_preact);
 var _unistore = require("unistore");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var store = (0, _unistore.createStore)({ count: 0 });
 
@@ -635,34 +637,35 @@ var actions = function actions(store) {
   };
 };
 
-var App = (0, _unistore.connect)("count", actions)(function (_ref2) {
-  var count = _ref2.count,
-      increment = _ref2.increment;
+var App = function App(a, b) {
+  _classCallCheck(this, App);
+
   return (0, _preact.h)(
     "div",
     null,
     (0, _preact.h)(
       "p",
-      { className: "result" },
-      "Count: ",
-      count
-    ),
-    (0, _preact.h)(
-      "button",
-      { className: "button", onClick: increment },
-      "Increment"
+      null,
+      "hello world"
     )
   );
-});
+};
+
+// const App = connect("count", actions)(({ count, increment }) => (
+//   <div>
+//     <p className='result'>Count: {count}</p>
+//     <button className='button' onClick={increment}>Increment</button>
+//   </div>
+// ));
 
 (0, _preact.render)((0, _preact.h)(
   _unistore.Provider,
   { store: store },
-  (0, _preact.h)(App, null)
+  (0, _unistore.connect)("count", actions)(App)
 ), document.body);
 
 console.log('hello world');
-},{"./index.css":6,"preact":7,"unistore":8}],0:[function(require,module,exports) {
+},{"./index.css":4,"preact":6,"unistore":7}],0:[function(require,module,exports) {
 var global = (1,eval)('this');
 var OldModule = module.bundle.Module;
 function Module() {
@@ -680,7 +683,7 @@ function Module() {
 module.bundle.Module = Module;
 
 if (!module.bundle.parent) {
-  var ws = new WebSocket('ws://localhost:58643/');
+  var ws = new WebSocket('ws://localhost:55605/');
   ws.onmessage = (e) => {
     var data = JSON.parse(e.data);
 
@@ -770,4 +773,4 @@ function hmrAccept(bundle, id) {
 
   return getParents(global.require, id).some(id => hmrAccept(global.require, id));
 }
-},{}]},{},[0,4])
+},{}]},{},[0,2])
