@@ -7,6 +7,9 @@
     }]
   ],
   "plugins": [
-    "transform-decorators"
+    "transform-decorators",
+    ["transform-react-jsx", {
+      "pragma": "dom" // default pragma is React.createElement
+    }]
   ]
 }
