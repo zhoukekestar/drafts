@@ -1,6 +1,6 @@
-const babylon  = require("babylon");
-const { default: traverse } = require("babel-traverse");
-const { default: generate } = require('babel-generator');
+const babylon = require("babylon");
+const traverse = require("babel-traverse").default;
+const generate = require('babel-generator').default;
 
 const code = `
   const abc = 1;
