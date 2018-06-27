@@ -10,33 +10,31 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /(node_modules|bower_components)/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-            plugins: [
-              ["@babel/plugin-proposal-decorators", {
-                legacy: true
-              }]
-            ]
-          }
-        }
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              presets: ['@babel/preset-env', '@babel/preset-react'],
+              plugins: [
+                ["@babel/plugin-proposal-decorators", {
+                  legacy: true
+                }]
+              ]
+            }
+          },
+          path.join(__dirname, './scripts/theme-require-loader.js'),
+        ]
       },
       {
         test: /\.less$/,
         use: [
-          {
-            loader: 'css-loader',
-            options: {
-              camelCase: true
-            }
-          },
+          'stylesheet-loader',
           'less-loader',
-          path.join(__dirname, './var-for-less-loader'),
+          path.join(__dirname, './scripts/var-for-less-loader'),
         ],
-      },
+      }
     ]
   },
   mode: 'development',
-  target: 'node'
+  // target: 'web'
 };
