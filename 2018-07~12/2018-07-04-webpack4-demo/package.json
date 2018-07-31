@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "build": "webpack --run-dev"
+  },
+  "devDependencies": {
+    "webpack": "^4.14.0",
+    "webpack-command": "^0.4.0"
+  }
+}

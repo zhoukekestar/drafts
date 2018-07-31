@@ -10,7 +10,6 @@ import { theme, Provider } from './theme';
   font-size: @s1;
   color: @color-brand1-1;
 }
-
 .bc {
   background: #ccc;
 }
@@ -32,15 +31,13 @@ class MyComponent extends Component {
 
 class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {};
-    this.click = this.click.bind(this);
-  }
+  state = {}
 
-  click() {
+  bui = () => {
+    const c = () => (Math.random() * 255 >> 0);
+
     this.setState({
-      '@color-brand1-1': '#fff'
+      '@color-brand1-1': `rgb(${c()}, ${c()}, ${c()})`,
     })
   }
 
@@ -48,19 +45,16 @@ class App extends Component {
     return (
       <Provider value={this.state}>
         <MyComponent />
-        <button onClick={this.click}>click</button>
+        <button onClick={this.bui}>bui~ 🤪</button>
       </Provider>
     );
   }
 }
 
-if (typeof window !== 'undefined') {
-  render(<App />, document.body);
-} else {
-  console.log('ooops');
-}
 
 
 
 
 
+
+render(<App />, document.body);

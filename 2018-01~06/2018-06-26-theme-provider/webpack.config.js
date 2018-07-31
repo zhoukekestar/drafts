@@ -14,12 +14,23 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env', '@babel/preset-react'],
-              plugins: [
-                ["@babel/plugin-proposal-decorators", {
-                  legacy: true
-                }]
-              ]
+              presets: [
+                '@babel/preset-env',
+                ['@babel/preset-stage-0', {
+                  decoratorsLegacy: true
+                }],
+                // ['@babel/preset-stage-1', {
+                //   decoratorsLegacy: true,
+                // }],
+                // ['@babel/preset-stage-2', {
+                //   decoratorsLegacy: true,
+                // }],
+                '@babel/preset-react'],
+              // plugins: [
+              //   ["@babel/plugin-proposal-decorators", {
+              //     legacy: true
+              //   }]
+              // ]
             }
           },
           path.join(__dirname, './scripts/theme-require-loader.js'),
