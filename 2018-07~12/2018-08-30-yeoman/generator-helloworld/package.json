@@ -1,0 +1,10 @@
+{
+  "name": "generator-helloworld",
+  "version": "1.0.0",
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "devDependencies": {
+    "yeoman-generator": "^3.1.1"
+  }
+}
