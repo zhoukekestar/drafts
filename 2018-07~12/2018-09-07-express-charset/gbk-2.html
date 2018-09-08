@@ -1,0 +1,16 @@
+<html>
+<meta charset="gbk">
+<p>
+中文（使用 encodeURIComponent ）：
+<script>
+  document.write(encodeURIComponent('中文'));
+</script>
+</p>
+<p>页面跳转（使用 a 标签）：
+<a href='/?p=中文'>
+<script>
+  document.write(document.querySelector('a').href);
+</script>
+</a>
+</p>
+</html>
