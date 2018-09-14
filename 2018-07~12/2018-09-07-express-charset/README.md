@@ -279,6 +279,45 @@ parameters.handleQueryParameters();
   ```
 
 
+## UTF-8 编码简析
+
+```js
+/**
+ * 将二进制转成 16 进制
+ * @example
+ * bit2hex('1110') => 'e'
+ * bit2hex('1101') => 'd'
+ **/
+const bit2hex = n => parseInt(n, 2).toString(16);
+
+/**
+ * 补前导零
+ * fillZero('12', 6) => '000012'
+ **/
+const fillZero = (str, n = 4) => new Array(n).fill(0).join('').replace(new RegExp(`.{${str.length}}$`), str);
+
+/**
+ * 仅做 demo 使用，未经测试
+ **/
+const encodeUTF8 = char => {
+  let bits = char.charCodeAt(0).toString(2);
+
+  return [
+    '1110' + fillZero(bits.substr(0, bits.length - 12)),
+    '10' + bits.substr(-12, 6),
+    '10' + bits.substr(-6),
+  ].map(bit => `%${bit2hex(bit)}`).join('').toUpperCase();
+}
+
+console.log(`encodeUTF8: ${encodeUTF8('中')}`);
+// encodeUTF8: %E4%B8%AD
+console.log(`encodeURIComponent: ${encodeURIComponent('中')}`);
+// encodeURIComponent: %E4%B8%AD
+
+```
+
+%D6%D0
+
 ## References
 * [Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type)
 * [所有编码格式](http://www.iana.org/assignments/character-sets/character-sets.xhtml)
