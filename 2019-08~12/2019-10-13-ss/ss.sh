@@ -14,7 +14,7 @@ echo '#################################'
 echo "  start install shadowsocks      "
 echo '#################################'
 # install shadowsocks
-pip install shadowsocks
+pip install -y shadowsocks
 
 # export PATH
 # ls /usr/local/bin
