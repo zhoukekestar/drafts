@@ -15,12 +15,14 @@
 * 7.6 64 位
 * 关闭安全加固
 * 云盘 20G （省钱）
+* 设置密码时，如果嫌麻烦可以使用密码模式
 
 ![image](https://user-images.githubusercontent.com/7157346/66713173-b319a800-edd9-11e9-973f-18193bdcb8aa.png)
 
 
 ### 配置网络
 因为默认网络配置，仅允许特定端口访问服务器，所以，需要将使用到的端口号(8383~8385)配置为网络允许。
+* 点击更多选择网络设置
 
 ![image](https://user-images.githubusercontent.com/7157346/66713761-6f2aa100-ede1-11e9-9d6c-b60d5398f7a2.png)
 
