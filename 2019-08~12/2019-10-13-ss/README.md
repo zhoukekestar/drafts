@@ -10,12 +10,17 @@
 ![image](https://user-images.githubusercontent.com/7157346/66713160-9a10f700-edd9-11e9-8ae8-a0acfee5ab54.png)
 
 
+### 选择系统
 * cent_os
 * 7.6 64 位
 * 关闭安全加固
 * 云盘 20G （省钱）
 
 ![image](https://user-images.githubusercontent.com/7157346/66713173-b319a800-edd9-11e9-973f-18193bdcb8aa.png)
+
+
+### 配置网络
+![image](https://user-images.githubusercontent.com/7157346/66713622-96806e80-eddf-11e9-9faa-d5647405d004.png)
 
 
 
