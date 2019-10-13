@@ -14,11 +14,11 @@ echo '#################################'
 echo "  start install shadowsocks      "
 echo '#################################'
 # install shadowsocks
-pip install shadowsocks
+pip install shadowsocks -i https://files.pythonhosted.org/
 
 # export PATH
 # ls /usr/local/bin
-# export PATH=/usr/local/bin:$PATH
+export PATH=/usr/bin:/usr/local/bin:$PATH
 
 
 echo '#################################'
@@ -39,7 +39,7 @@ echo '#################################'
 echo "  start shadowsocks with config  "
 echo '#################################'
 # start shadowsocks
-/usr/local/bin/ssserver -c /etc/shadowsocks.json -d start
+ssserver -c /etc/shadowsocks.json -d start
 
 
 echo '#############################'
