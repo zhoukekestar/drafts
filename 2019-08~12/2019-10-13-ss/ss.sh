@@ -25,7 +25,7 @@ echo "\n\n\n---------------------------------"
 echo "  start install shadowsocks      "
 echo "---------------------------------\n\n\n"
 - install shadowsocks
-pip install shadowsocks -i https://files.pythonhosted.org/
+pip install shadowsocks
 
 - export PATH
 - ls /usr/local/bin
