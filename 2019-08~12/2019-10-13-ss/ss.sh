@@ -7,14 +7,14 @@ echo '#################################'
 echo "      start install python      "
 echo '#################################'
 # install python
-yum install python-setuptools && easy_install pip
+yum -y install python-setuptools && easy_install pip
 
 
 echo '#################################'
 echo "  start install shadowsocks      "
 echo '#################################'
 # install shadowsocks
-pip install -y shadowsocks
+pip install shadowsocks
 
 # export PATH
 # ls /usr/local/bin
@@ -27,7 +27,8 @@ echo '#################################'
 # get config form git
 
 # get current ip address
-IP=$(ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2)
+# IP=$(ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2)
+IP=`curl -s https://api.ipify.org`
 PASSWORD="$IP-$RANDOM"
 
 # set a random password
