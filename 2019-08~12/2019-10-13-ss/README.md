@@ -20,6 +20,10 @@
 
 
 ### 配置网络
+因为默认网络配置，仅允许特定端口访问服务器，所以，需要将使用到的端口号(8383~8385)配置为网络允许。
+
+![image](https://user-images.githubusercontent.com/7157346/66713761-6f2aa100-ede1-11e9-9d6c-b60d5398f7a2.png)
+
 ![image](https://user-images.githubusercontent.com/7157346/66713622-96806e80-eddf-11e9-9faa-d5647405d004.png)
 
 
@@ -29,7 +33,7 @@
 * 安装 pip
 * 安装 shadowsocks
 
-## HOWTO
+## 快速安装 Shadowsocks
 
 ```sh
 ssh root@xx.xx.xx.xx
