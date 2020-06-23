@@ -1,7 +1,7 @@
-// import * as React from 'react';
-// import * as React2 from './react';
+import React from 'react';
 import ReactDOM from 'react-dom';
+import moment from 'moment';
 
-// console.log(React);
-// console.log(React2);
+console.log(React);
 console.log(ReactDOM);
+console.log(mement);
