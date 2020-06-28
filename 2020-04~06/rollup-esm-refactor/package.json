@@ -1,0 +1,21 @@
+{
+  "name": "rollup-esm-refator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "umd": "rollup index.js --format umd --name 'ModuleName' --file dist/umd.js",
+    "umd2es": "rollup -c umd2es.config.js",
+    "cjs": "rollup index.js --format cjs --name 'ModuleName' --file dist/cjs.js",
+    "iife": "rollup index.js --format iife --name 'ModuleName' --file dist/iife.js",
+    "amd": "rollup index.js --format amd --name 'ModuleName' --file dist/amd.js",
+    "es": "rollup index.js --format es --name 'ModuleName' --file dist/es.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "rollup": "^2.18.0",
+    "rollup-plugin-commonjs": "^10.1.0"
+  }
+}
