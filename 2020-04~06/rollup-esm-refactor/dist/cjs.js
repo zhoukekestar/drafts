@@ -1,5 +1,9 @@
 'use strict';
 
-var index = 'Hello, world!';
+Object.defineProperty(exports, '__esModule', { value: true });
 
-module.exports = index;
+var index = 'Hello, world!';
+const name = 'Bob';
+
+exports.default = index;
+exports.name = name;

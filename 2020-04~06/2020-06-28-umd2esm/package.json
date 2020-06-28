@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "rollup": "^2.18.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-esm-import-to-url": "^2.1.0"
+  }
+}
