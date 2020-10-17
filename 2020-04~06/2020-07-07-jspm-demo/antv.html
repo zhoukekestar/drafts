@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="container"></div>
+  <script type="module">
+    // import G2 from 'https://jspm.dev/@antv/g2plot';
+    import G2 from 'https://jspm.alibaba-inc.com/@antv/g2plot';
+
+    const { Line } = G2;
+    console.log(G2)
+    fetch('https://g2plot.antv.vision/zh/examples/data/fireworks-sales.json')
+      .then((res) => res.json())
+      .then((data) => {
+        const linePlot = new Line(document.getElementById('container'), {
+          title: {
+            visible: true,
+            text: '单折线图的基础用法',
+          },
+          description: {
+            visible: true,
+            text: '最基础简单的折线图使用方式，显示一个指标的趋势',
+          },
+          forceFit: true,
+          data,
+          padding: 'auto',
+          xField: 'Date',
+          yField: 'scales',
+          xAxis: {
+            type: 'dateTime',
+            tickCount: 5,
+          },
+        });
+
+        linePlot.render();
+      });
+
+  </script>
+</body>
+</html>

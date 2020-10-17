@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://gw.alipayobjects.com/os/lib/antd/4.3.1/dist/antd.min.css">
+</head>
+<body>
+  <hello-world></hello-world>
+  <script type="module">
+    import React, { Component } from 'https://jspm.alibaba-inc.com/react';
+    import ReactDOM from 'https://jspm.alibaba-inc.com/react-dom';
+    import { Button } from 'https://jspm.alibaba-inc.com/antd';
+
+    class HelloWorld extends HTMLElement {
+      connectedCallback() {
+        ReactDOM.render(React.createElement(Button, null, "Antd Button"), this);
+      }
+    }
+
+    customElements.define('hello-world', HelloWorld);
+  </script>
+</body>
+</html>

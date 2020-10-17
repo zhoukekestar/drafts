@@ -16,7 +16,9 @@ const config = {
         "moment": "https://cdn.pika.dev/moment@%5E2.27.0",
       },
     }),
-    commonjs(),
+    commonjs({
+      namedExport: ['Button']
+    }),
   ],
 };
 

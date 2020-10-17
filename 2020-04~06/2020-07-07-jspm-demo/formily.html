@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://gw.alipayobjects.com/os/lib/antd/4.3.1/dist/antd.min.css">
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module">
+    import React from 'https://jspm.dev/react'
+    import ReactDOM from 'https://jspm.dev/react-dom'
+    import formily from 'https://jspm.dev/@formily/antd' // 或者 @formily/next
+    // import
+    import { Input } from 'https://jspm.dev/antd'
+
+    console.log(formily);
+    const {
+      SchemaForm,
+      SchemaMarkupField: Field,
+      FormButtonGroup,
+      Submit,
+      // Reset
+    } = formily;
+
+    const schema = {
+      "type": "object",
+      "properties": {
+        "key": {
+          "title": "key",
+          "type": "string",
+          "x-component": "Input",
+        },
+        "key2": {
+          "title": "key2",
+          "type": "string",
+          "x-component": "Input",
+          "x-linkages": [
+            {
+              "type": "value:visible",
+              "target": "key",
+              "condition": "{{ $self.value === '123' }}"
+            }
+          ]
+        }
+      }
+    }
+    ReactDOM.render(React.createElement(SchemaForm, {
+      components: { Input },
+      schema: schema,
+    }), document.getElementById('root'))
+
+  </script>
+</body>
+</html>
