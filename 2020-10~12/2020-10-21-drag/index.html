@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script>
+      let offsetX = 0,
+        offsetY = 0;
+      function allowDrop(ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+      }
+
+      function dragstart(ev) {
+        offsetX = ev.offsetX;
+        offsetY = ev.offsetY;
+      }
+
+      function drag(ev) {
+        ev.target.style = `left: ${ev.x - offsetX}px; top: ${
+          ev.y - offsetY
+        }px; `;
+        ev.preventDefault();
+        ev.stopPropagation();
+      }
+
+      function drop(ev) {
+        ev.target.style = `left: ${ev.x - offsetX}px; top: ${
+          ev.y - offsetY
+        }px; `;
+        ev.preventDefault();
+        ev.stopPropagation();
+      }
+    </script>
+    <style>
+      .global-drag {
+        position: absolute;
+        display: block;
+        left: 300px;
+        top: 300px;
+        width: 200px;
+        height: 200px;
+        background: #47bfdc;
+        text-align: center;
+        line-height: 200px;
+        color: #fff;
+      }
+      html,
+      body {
+        padding: 0;
+        margin: 0;
+        height: 100vh;
+        width: 100vw;
+      }
+    </style>
+  </head>
+  <body ondragover="allowDrop(event)" ondrag="drag(event)" ondrop="drop(event)">
+    <div class="global-drag" draggable="true" ondragstart="dragstart(event)">
+      Hello world
+    </div>
+  </body>
+</html>
