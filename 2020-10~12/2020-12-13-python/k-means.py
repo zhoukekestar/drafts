@@ -81,18 +81,37 @@ def gotoK(points, pointsK):
 plt.show()
 
 def drawABC():
-    allp = np.array(points)
-    plt.scatter(allp.T[0], allp.T[1], marker='o', label="A")
-    # plt.scatter(pointsA.T[0], pointsA.T[1], marker='o', label="A")
-    # plt.scatter(pointsB.T[0], pointsB.T[1], marker='^', label="B")
-    # plt.scatter(pointsC.T[0], pointsC.T[1], marker='s', label="C")
+    # allp = np.array(points)
+    # plt.scatter(allp.T[0], allp.T[1], marker='o', label="A")
+    plt.scatter(pointsA.T[0], pointsA.T[1], marker='o', label="A")
+    plt.scatter(pointsB.T[0], pointsB.T[1], marker='^', label="B")
+    plt.scatter(pointsC.T[0], pointsC.T[1], marker='s', label="C")
 
-for i in range(8):
+for i in range(15):
     print(i)
     drawABC()
-    pointsK = np.array(gotoK(points, pointsK))
-    plt.scatter(pointsK.T[0], pointsK.T[1], marker = '+', label = 'k')
+    newPointsK = np.array(gotoK(points, pointsK))
+
+    flag = 1
+    # 所有的都相等的时候，提示完成
+    for i, p in enumerate(pointsK):
+        if (newPointsK[i][0] != p[0] or newPointsK[i][1] != p[1]):
+            flag = 0
+            break
+
+    if (flag == 1):
+        print('finished')
+    else:
+        pointsK = newPointsK
+    plt.scatter(newPointsK.T[0], newPointsK.T[1], marker = '+', label = 'k')
     plt.show()
+
+    if (flag == 1):
+        break
+
+
+
+
 
 # print(type(list(pointsC)))
 
