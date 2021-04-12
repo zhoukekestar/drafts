@@ -29,7 +29,7 @@ const httpsHandler = (req, res) => {
       <script>
         (async () => {
           const start = Date.now();
-          for (let i = 0; i < 1000; i++)  import('/script-' + i + '.js')
+          for (let i = 0; i < 1000; i++) await import('/script-' + i + '.js')
           console.log('cost :', Date.now() - start);
         })();
       </script>
@@ -74,7 +74,7 @@ const http2Handlers = (req, res) => {
     <script>
       (async () => {
         const start = Date.now();
-        for (let i = 0; i < 1000; i++)  import('/script-' + i + '.js')
+        for (let i = 0; i < 1000; i++) await import('/script-' + i + '.js')
         console.log('cost :', Date.now() - start);
       })();
     </script>`);

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    :focus {
+      outline: 1px solid #cc0;
+    }
+  </style>
+</head>
+<body>
+  <form method="post">
+    <input name='a' required />
+    <rad-input required ></rad-input>
+    <my-control required name='test'></my-control>
+    <input type="submit" />
+    <input type="reset" />
+  </form>
+
+  <script type="module" src='./my-control.js'></script>
+  <script type="module" src="./rad-input.js"></script>
+  <script>
+
+    document.querySelector('form').addEventListener('formdata', (e) => {
+      console.log(e);
+      e.formData.append('a', JSON.stringify({ a: 1, b: false }))
+    })
+
+
+
+
+    // var data = {
+    //   a: 'xxx',
+    //   b: {
+    //     c: Boolean(c),
+    //     d: Number(d),
+    //   }
+    // }
+  </script>
+</body>
+</html>
